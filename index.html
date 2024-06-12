@@ -6,7 +6,6 @@
     <title>20/4/10 Car Purchase Rule</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
     <header>
@@ -37,6 +36,7 @@
             </ul>
             <p>By following these steps, you can avoid overspending on a car and minimize interest payments, ensuring your car remains an affordable part of your budget.</p>
         </section>
+        <section>
             <p>To start, find the car you wish to purchase. If you don't already know the price, visit <a href="https://www.kbb.com" target="_blank">Kelley Blue Book</a> to find it.</p>
             <label for="carPrice">Enter the car price:</label>
             <input type="range" id="carPrice" name="carPrice" min="1000" max="150000" value="25000" step="500">
@@ -56,7 +56,7 @@
         </section>
         <section>
             <p>Your selected repayment term is: <span id="repaymentTermDisplay">0</span> years</p>
-        </section>        
+        </section>
         <section>
             <label for="incomeAmount">Enter your income:</label>
             <input type="number" id="incomeAmount" name="incomeAmount" placeholder="Enter amount in dollars">
@@ -67,20 +67,16 @@
         </section>
         <section>
             <p>10% of your total monthly income is: <span id="monthlyIncome">0</span></p>
-        </section>        
+        </section>
         <section>
             <p>The maximum loan amount you can take is: <span id="maxLoanAmount">$0</span></p>
             <p>Your estimated monthly loan payment is: <span id="monthlyPayment">$0</span></p>
             <p id="affordabilityMessage"></p>
-        </section>        
+        </section>
         <section id="chart-container">
             <canvas id="affordabilityChart"></canvas>
             <div id="chartCenterText">$0<span>Affordable</span></div>
         </section>
-        
-        
-        
-        
     </main>
     <script src="main.js"></script>
 </body>

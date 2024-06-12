@@ -1,8 +1,10 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
 header {
@@ -10,14 +12,31 @@ header {
     color: white;
     text-align: center;
     padding: 1rem 0;
+    width: 100%;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
 }
 
 main {
     padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+section h2, section h3 {
+    color: #4CAF50;
 }
 
 label {
@@ -25,9 +44,21 @@ label {
     margin-bottom: 0.5rem;
 }
 
-input[type="range"] {
-    width: 100%;
+input[type="range"], input[type="number"], select {
+    width: calc(100% - 22px);
+    padding: 0.5rem;
     margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="range"] {
+    margin-bottom: 1rem;
+}
+
+input[type="number"] {
+    width: calc(100% - 140px);
+    margin-right: 10px;
 }
 
 span {
@@ -35,36 +66,25 @@ span {
 }
 
 select {
-    width: 7%;
-    padding: 0.5rem;
-}
-
-#repaymentTermDisplay {
-    font-weight: bold;
-}
-
-input[type="number"] {
-    width: calc(100% - 500px);
-    padding: 0.5rem;
-    margin-right: 10px;
-    margin-bottom: 1rem;
-}
-
-#incomeFrequency {
     width: 130px;
     padding: 0.5rem;
     margin-bottom: 1rem;
 }
 
-#monthlyIncome {
+#repaymentTermDisplay, #monthlyIncome, #maxLoanAmount, #monthlyPayment {
     font-weight: bold;
 }
 
-#affordabilityChart {
+#chart-container {
+    position: relative;
     width: 300px;
     height: 300px;
     margin: 0 auto;
-    position: relative;
+}
+
+#affordabilityChart {
+    width: 100%;
+    height: 100%;
 }
 
 #chartCenterText {
@@ -85,5 +105,3 @@ input[type="number"] {
     font-weight: normal;
     color: black;
 }
-
-
