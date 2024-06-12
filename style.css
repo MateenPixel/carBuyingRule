@@ -35,10 +35,27 @@ span {
 }
 
 select {
-    width: 5%;
+    width: 7%;
     padding: 0.5rem;
 }
 
 #repaymentTermDisplay {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: calc(100% - 500px);
+    padding: 0.5rem;
+    margin-right: 10px;
+    margin-bottom: 1rem;
+}
+
+#incomeFrequency {
+    width: 130px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#monthlyIncome {
     font-weight: bold;
 }

@@ -33,6 +33,17 @@
         <section>
             <p>Your selected repayment term is: <span id="repaymentTermDisplay">0</span> years</p>
         </section>        
+        <section>
+            <label for="incomeAmount">Enter your income:</label>
+            <input type="number" id="incomeAmount" name="incomeAmount" placeholder="Enter amount in dollars">
+            <select id="incomeFrequency" name="incomeFrequency">
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+        </section>
+        <section>
+            <p>10% of your total monthly income is: <span id="monthlyIncome">0</span></p>
+        </section>        
     </main>
     <script src="main.js"></script>
 </body>
