@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyPayment = document.getElementById('monthlyPayment');
     const affordabilityMessage = document.getElementById('affordabilityMessage');
     const chartCenterText = document.getElementById('chartCenterText');
+    const car = document.getElementById('car');
 
     const ctx = document.getElementById('affordabilityChart').getContext('2d');
     let affordabilityChart = new Chart(ctx, {
@@ -110,4 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCarPrice();
     updateRepaymentTerm();
     updateIncome();
+
+    document.addEventListener('mousemove', (event) => {
+        car.style.left = `${event.clientX}px`;
+        car.style.top = `${event.clientY}px`;
+    });
 });
