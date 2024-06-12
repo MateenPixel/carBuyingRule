@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const affordabilityMessage = document.getElementById('affordabilityMessage');
     const chartCenterText = document.getElementById('chartCenterText');
     const car = document.getElementById('car');
+    const backgroundOverlay = document.getElementById('background-overlay');
 
     const ctx = document.getElementById('affordabilityChart').getContext('2d');
     let affordabilityChart = new Chart(ctx, {
@@ -113,7 +114,22 @@ document.addEventListener('DOMContentLoaded', function() {
     updateIncome();
 
     document.addEventListener('mousemove', (event) => {
-        car.style.left = `${event.clientX}px`;
-        car.style.top = `${event.clientY}px`;
+        const carWidth = car.offsetWidth;
+        const carHeight = car.offsetHeight;
+        const centerX = event.clientX - carWidth / 2;
+        const centerY = event.clientY - carHeight / 2;
+        car.style.left = `${centerX}px`;
+        car.style.top = `${centerY}px`;
+
+        const angle = Math.atan2(event.clientY - (window.innerHeight / 2 + window.scrollY), event.clientX - (window.innerWidth / 2 + window.scrollX)) * 180 / Math.PI - 90;
+        car.style.transform = `rotate(${angle}deg)`;
+    });
+
+    backgroundOverlay.addEventListener('mousemove', (event) => {
+        car.style.display = 'block';
+    });
+
+    main.addEventListener('mousemove', (event) => {
+        car.style.display = 'none';
     });
 });
