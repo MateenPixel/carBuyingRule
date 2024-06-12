@@ -149,16 +149,16 @@ button:hover {
 
 .money {
     position: fixed;
-    top: -15%; 
+    top: -11%; 
     font-size: 2rem;
-    animation: fall 5s linear infinite;
+    animation: fall 10s linear infinite;
 }
 
 .rain {
     position: fixed;
-    top: -15%; 
+    top: -10%; 
     font-size: 2rem;
-    animation: fall 5s linear infinite;
+    animation: fall 10s linear infinite;
 }
 
 #goBackBtn {
