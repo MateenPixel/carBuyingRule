@@ -59,15 +59,53 @@ document.addEventListener('DOMContentLoaded', function() {
             if (affordable) {
                 affordabilityMessage.textContent = "This car is affordable based on the 20/4/10 rule.";
                 affordabilityMessage.style.color = "green";
+                showMoneyAnimation();
             } else {
                 affordabilityMessage.textContent = "This car may not be affordable based on the 20/4/10 rule.";
                 affordabilityMessage.style.color = "red";
+                showRainAnimation();
             }
         } else {
             maxLoanAmount.textContent = "$0";
             monthlyPayment.textContent = "$0";
             affordabilityMessage.textContent = "";
             updateChart(0, 0, 0, false);
+        }
+    }
+
+    function showMoneyAnimation() {
+        const moneyImages = [
+            'images/supercar.png',
+            'images/supercar2.png',
+            'images/supercar3.png'
+        ];
+        for (let i = 0; i < 20; i++) {
+            const money = document.createElement('div');
+            money.classList.add('money');
+            const randomImage = moneyImages[Math.floor(Math.random() * moneyImages.length)];
+            money.innerHTML = `<img src="${randomImage}" alt="money" style="width: 100px; height: auto;">`;
+            money.style.left = `${Math.random() * 100}vw`;
+            money.style.animationDelay = `${Math.random() * 4}s`;
+            document.body.appendChild(money);
+
+            setTimeout(() => {
+                document.body.removeChild(money);
+            }, 20000); 
+        }
+    }
+
+    function showRainAnimation() {
+        for (let i = 0; i < 20; i++) {
+            const rain = document.createElement('div');
+            rain.classList.add('rain');
+            rain.textContent = '😭';
+            rain.style.left = `${Math.random() * 100}vw`;
+            rain.style.animationDelay = `${Math.random() * 2}s`; 
+            document.body.appendChild(rain);
+
+            setTimeout(() => {
+                document.body.removeChild(rain);
+            }, 20000); 
         }
     }
 
@@ -80,6 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const centerY = event.clientY - carHeight / 2;
         car.style.left = `${centerX}px`;
         car.style.top = `${centerY}px`;
-        car.style.display = 'block'; // Ensure car is visible when moving
+        car.style.display = 'block'; 
     });
 });
