@@ -33,3 +33,12 @@ input[type="range"] {
 span {
     font-weight: bold;
 }
+
+select {
+    width: 5%;
+    padding: 0.5rem;
+}
+
+#repaymentTermDisplay {
+    font-weight: bold;
+}
