@@ -48,7 +48,6 @@
         <section>
             <label for="repaymentTerm">Choose your repayment term (years):</label>
             <select id="repaymentTerm" name="repaymentTerm">
-                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -74,9 +73,13 @@
             <p>Your estimated monthly loan payment is: <span id="monthlyPayment">$0</span></p>
             <p id="affordabilityMessage"></p>
         </section>        
-        <section>
-            <canvas id="affordabilityChart" width="400" height="400"></canvas>
+        <section id="chart-container">
+            <canvas id="affordabilityChart"></canvas>
+            <div id="chartCenterText">$0<span>Affordable</span></div>
         </section>
+        
+        
+        
         
     </main>
     <script src="main.js"></script>

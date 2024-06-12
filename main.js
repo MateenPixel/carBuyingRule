@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const maxLoanAmount = document.getElementById('maxLoanAmount');
     const monthlyPayment = document.getElementById('monthlyPayment');
     const affordabilityMessage = document.getElementById('affordabilityMessage');
+    const chartCenterText = document.getElementById('chartCenterText');
 
     const ctx = document.getElementById('affordabilityChart').getContext('2d');
     let affordabilityChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: ['Down Payment', 'Loan Amount', 'Monthly Payment'],
             datasets: [{
@@ -28,13 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 legend: {
                     position: 'top',
                 }
-            }
+            },
+            cutout: '70%',
         }
     });
 
-    function updateChart(downPaymentValue, loanAmount, monthlyPaymentValue) {
+    function updateChart(downPaymentValue, loanAmount, monthlyPaymentValue, affordable) {
         affordabilityChart.data.datasets[0].data = [downPaymentValue, loanAmount, monthlyPaymentValue];
         affordabilityChart.update();
+        chartCenterText.innerHTML = `$${monthlyPaymentValue.toFixed(2)}<span>${affordable ? 'Affordable' : 'Not Affordable'}</span>`;
+        chartCenterText.style.color = affordable ? 'green' : 'red';
     }
 
     function updateCarPrice() {
@@ -79,9 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
             maxLoanAmount.textContent = `$${loanAmount.toLocaleString()}`;
             monthlyPayment.textContent = `$${monthlyPaymentValue.toFixed(2)}`;
 
-            updateChart(downPaymentValue, loanAmount, monthlyPaymentValue);
+            const affordable = monthlyPaymentValue <= monthlyIncomeValue;
+            updateChart(downPaymentValue, loanAmount, monthlyPaymentValue, affordable);
 
-            if (monthlyPaymentValue <= monthlyIncomeValue) {
+            if (affordable) {
                 affordabilityMessage.textContent = "This car is affordable based on the 20/4/10 rule.";
                 affordabilityMessage.style.color = "green";
             } else {
@@ -93,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             monthlyPayment.textContent = "$0";
             affordabilityMessage.textContent = "";
 
-            updateChart(0, 0, 0);
+            updateChart(0, 0, 0, false);
         }
     }
 
@@ -102,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     incomeAmount.addEventListener('input', updateIncome);
     incomeFrequency.addEventListener('change', updateIncome);
 
-    // Initial update
     updateCarPrice();
     updateRepaymentTerm();
     updateIncome();
