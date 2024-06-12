@@ -11,11 +11,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyPayment = document.getElementById('monthlyPayment');
     const affordabilityMessage = document.getElementById('affordabilityMessage');
 
+    const ctx = document.getElementById('affordabilityChart').getContext('2d');
+    let affordabilityChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Down Payment', 'Loan Amount', 'Monthly Payment'],
+            datasets: [{
+                label: 'Car Affordability',
+                data: [0, 0, 0],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+
+    function updateChart(downPaymentValue, loanAmount, monthlyPaymentValue) {
+        affordabilityChart.data.datasets[0].data = [downPaymentValue, loanAmount, monthlyPaymentValue];
+        affordabilityChart.update();
+    }
+
     function updateCarPrice() {
         const carPrice = parseFloat(carPriceInput.value) || 0;
         carPriceValue.textContent = `$${carPrice.toLocaleString()}`;
-        downPayment.textContent = `$${(carPrice * 0.2).toLocaleString()}`;
-        calculateAffordability();
+        const downPaymentValue = carPrice * 0.2;
+        downPayment.textContent = `$${downPaymentValue.toLocaleString()}`;
+        calculateAffordability(downPaymentValue);
     }
 
     function updateRepaymentTerm() {
@@ -36,9 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateAffordability();
     }
 
-    function calculateAffordability() {
+    function calculateAffordability(downPaymentValue = null) {
         const carPrice = parseFloat(carPriceInput.value) || 0;
-        const downPaymentValue = carPrice * 0.2;
+        downPaymentValue = downPaymentValue !== null ? downPaymentValue : carPrice * 0.2;
         const loanAmount = carPrice - downPaymentValue;
         const termYears = parseInt(repaymentTerm.value) || 0;
         const monthlyIncomeValue = parseFloat(monthlyIncome.textContent.replace('$', '').replace(',', '')) || 0;
@@ -52,6 +79,8 @@ document.addEventListener('DOMContentLoaded', function() {
             maxLoanAmount.textContent = `$${loanAmount.toLocaleString()}`;
             monthlyPayment.textContent = `$${monthlyPaymentValue.toFixed(2)}`;
 
+            updateChart(downPaymentValue, loanAmount, monthlyPaymentValue);
+
             if (monthlyPaymentValue <= monthlyIncomeValue) {
                 affordabilityMessage.textContent = "This car is affordable based on the 20/4/10 rule.";
                 affordabilityMessage.style.color = "green";
@@ -63,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
             maxLoanAmount.textContent = "$0";
             monthlyPayment.textContent = "$0";
             affordabilityMessage.textContent = "";
+
+            updateChart(0, 0, 0);
         }
     }
 
@@ -71,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     incomeAmount.addEventListener('input', updateIncome);
     incomeFrequency.addEventListener('change', updateIncome);
 
+    // Initial update
     updateCarPrice();
     updateRepaymentTerm();
     updateIncome();
