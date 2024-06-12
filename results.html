@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Affordability Results</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Car Affordability Results</h1>
+    </header>
+    <main>
+        <section>
+            <p>The maximum loan amount you can take is: <span id="maxLoanAmount"></span></p>
+            <p>Your estimated monthly loan payment is: <span id="monthlyPayment"></span></p>
+            <p id="affordabilityMessage"></p>
+        </section>
+        <section id="chart-container">
+            <canvas id="affordabilityChart"></canvas>
+            <div id="chartCenterText"></div>
+        </section>
+    </main>
+    <script src="results.js"></script>
+</body>
+</html>
