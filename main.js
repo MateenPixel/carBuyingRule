@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyIncome = document.getElementById('monthlyIncome');
     const calculateBtn = document.getElementById('calculateBtn');
     const car = document.getElementById('car');
-    const backgroundOverlay = document.getElementById('background-overlay');
 
     function updateCarPrice() {
         const carPrice = parseFloat(carPriceInput.value) || 0;
@@ -51,17 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         car.style.left = `${centerX}px`;
         car.style.top = `${centerY}px`;
         car.style.display = 'block'; // Ensure car is visible when moving
-
-        const angle = Math.atan2(event.clientY - (window.innerHeight / 2 + window.scrollY), event.clientX - (window.innerWidth / 2 + window.scrollX)) * 180 / Math.PI - 90;
-        car.style.transform = `rotate(${angle}deg)`;
-    });
-
-    backgroundOverlay.addEventListener('mousemove', (event) => {
-        car.style.display = 'block';
-    });
-
-    document.querySelector('main').addEventListener('mousemove', (event) => {
-        car.style.display = 'none';
     });
 
     calculateBtn.addEventListener('click', () => {

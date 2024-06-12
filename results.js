@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyPayment = document.getElementById('monthlyPayment');
     const affordabilityMessage = document.getElementById('affordabilityMessage');
     const chartCenterText = document.getElementById('chartCenterText');
+    const car = document.getElementById('car');
 
     const ctx = document.getElementById('affordabilityChart').getContext('2d');
     let affordabilityChart = new Chart(ctx, {
@@ -71,4 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     calculateAffordability();
+
+    document.addEventListener('mousemove', (event) => {
+        const carWidth = car.offsetWidth;
+        const carHeight = car.offsetHeight;
+        const centerX = event.clientX - carWidth / 2;
+        const centerY = event.clientY - carHeight / 2;
+        car.style.left = `${centerX}px`;
+        car.style.top = `${centerY}px`;
+        car.style.display = 'block'; // Ensure car is visible when moving
+    });
 });

@@ -116,3 +116,22 @@ select {
     z-index: 10;
     transition: transform 0.1s linear;
 }
+
+button {
+    display: block;
+    width: calc(100% - 22px);
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
