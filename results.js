@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'images/supercar2.png',
             'images/supercar3.png'
         ];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
             const money = document.createElement('div');
             money.classList.add('money');
             const randomImage = moneyImages[Math.floor(Math.random() * moneyImages.length)];
@@ -95,12 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showRainAnimation() {
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
             const rain = document.createElement('div');
             rain.classList.add('rain');
             rain.textContent = '😭';
             rain.style.left = `${Math.random() * 100}vw`;
-            rain.style.animationDelay = `${Math.random() * 2}s`; 
+            rain.style.animationDelay = `${Math.random() * 4}s`; 
             document.body.appendChild(rain);
 
             setTimeout(() => {
@@ -119,5 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
         car.style.left = `${centerX}px`;
         car.style.top = `${centerY}px`;
         car.style.display = 'block'; 
+    });
+
+    goBackBtn.addEventListener('click', () => {
+        window.location.href = 'index.html';
     });
 });
